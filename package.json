@@ -1,0 +1,35 @@
+{
+  "dependencies": {
+    "line-reader": "^0.4.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^27.0.1",
+    "@types/line-reader": "^0.0.34",
+    "@types/node": "^16.7.10",
+    "@typescript-eslint/eslint-plugin": "^4.30.0",
+    "@typescript-eslint/parser": "^4.30.0",
+    "eslint": "^7.32.0",
+    "jest": "^27.1.0",
+    "ts-jest": "^27.0.5"
+  },
+  "name": "stonelang_ts",
+  "description": "TypeScript 实现《两周自制脚本语言》书中的 stone 语言。",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "exec": "node ./build/index.js",
+    "inspect": "node --inspect-brk ./build/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlexZ33/stonelang_ts.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AlexZ33/stonelang_ts/issues"
+  },
+  "homepage": "https://github.com/AlexZ33/stonelang_ts#readme"
+}
