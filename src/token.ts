@@ -1,8 +1,8 @@
 /*
  * @Author: your name
  * @Date: 2021-09-03 15:49:40
- * @LastEditTime: 2021-09-10 15:28:15
- * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2022-07-21 19:18:21
+ * @LastEditors: AlexZ33 775136985@qq.com
  * @Description: 
  * @Reference: https://github.com/chibash/stone/blob/master/src/stone/Token.java
  * @FilePath: /stonelang_ts/src/token.ts
@@ -23,16 +23,22 @@ import {StoneError} from './errors'
  */
 
 /**
- *Token抽象类
- *
+ *Token（单词）抽象类
+ *该抽象类将记录单词对应的字符串，单词的类型，单词所处位置的行号等信息 (把单词的种类限定为3种，还真是敷衍啊~)
  * @export
  * @abstract
  * @class Token
+ * @function getLineNumber() 获取单词所处位置的行号等信息
+ * @function isIdentifier() 判断单词是否是标识符
+ * @function isNumber() 判断单词是否是数字
+ * @function isString() 判断单词是否是字符串
+ * @function getNumber() 获取单词对应的数字
+ * @function getText() 获取单词的字符串
  */
 export abstract class Token {
-    static readonly EOF = new class extends Token{}(-1) // end of file
+    static readonly EOF= new class extends Token{}(-1) // end of file　用于表示程序结束
     // 操作系统特定的行尾标记。POSIX 上是 \n   Windows 上是 \r\n
-    static readonly EOL = os.EOL   // end of line 
+    static readonly EOL: string = os.EOL   // end of line 　用于表示换行符  它是一个String对象，也就是说，只是一个单纯的字符串。
 
     private lineNumber: number // 
 
@@ -65,14 +71,22 @@ export abstract class Token {
     }
 }
 
+/**
+ *Token类根据单词的类型，又定义了不同的子类。
+ *StoneLang语言含有标识符、整型字面量和字符串字面量这三种类型的单词，每种单词都定义了对应的Token类的子类
+ * @export 
+ * @class NumToken 整型字面量
+ * @extends {Token}
+ */
 export class NumToken extends Token {
-    private value: number
+    private value: number  // 其实可以使用enum之类的类型，　也是整型字面量
     
     constructor(lineNum: number, v:number) {
         super(lineNum)
         this.value = v
     }
-
+　
+    // 如果是整型字面量则为真 
     isNumber(): boolean {
         return true
     }
@@ -86,12 +100,20 @@ export class NumToken extends Token {
     }
 }
 
+/**
+ *
+ *
+ * @export
+ * @class IdToken 标识符类
+ * @extends {Token}
+ */
 export class IdToken extends Token {
     private text: string
     constructor(lineNum: number, id:string) {
         super(lineNum)
         this.text = id
     }
+    // 如果是标识符则为真
     isIdentifier(): boolean {
         return true
     }
@@ -102,6 +124,14 @@ export class IdToken extends Token {
 
 }
 
+
+/**
+ *
+ *
+ * @export
+ * @class StrToken 字符串字面量类
+ * @extends {Token}
+ */
 export class StrToken extends Token {
     private literal: string
     constructor(lineNum: number, str:string) {
@@ -109,6 +139,7 @@ export class StrToken extends Token {
         this.literal = str
     }
 
+    // 如果是字符串字面量则为真
     isString(): boolean {
         return true
     }

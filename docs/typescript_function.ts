@@ -4,7 +4,7 @@
  * @LastEditTime: 2021-09-29 15:53:50
  * @LastEditors: Please set LastEditors
  * @Description: https://zhuanlan.zhihu.com/p/270592378
- * @FilePath: /webgl-col/docs/typescript_function.ts
+ * @FilePath: docs/typescript_function.ts
  */
 // 方法可选参数 ?
 // 可选参数必须配置到参数的最后面
