@@ -1,8 +1,8 @@
 /*
- * @Author: your name
+ * @Author: AlexZ33
  * @Date: 2021-09-01 20:41:47
- * @LastEditTime: 2021-09-07 14:56:09
- * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2022-07-21 19:58:33
+ * @LastEditors: AlexZ33 775136985@qq.com
  * @Description: In User Settings Edit
  * @FilePath: /stonelang_ts/src/lineReader.ts
  */
@@ -50,7 +50,7 @@ const closeReader = (reader:Reader): Promise<void> =>
         nextLine(): Promise<string>
     }
 
-    export class FileLineReader {
+    export class FileLineReader  implements LineReader {
         private readonly filename: string
         private reader: Reader
         private lineNumber: number = -1

@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-09-03 15:49:40
- * @LastEditTime: 2022-07-21 19:18:21
+ * @LastEditTime: 2022-07-21 19:42:23
  * @LastEditors: AlexZ33 775136985@qq.com
  * @Description: 
  * @Reference: https://github.com/chibash/stone/blob/master/src/stone/Token.java
@@ -72,6 +72,8 @@ export abstract class Token {
 }
 
 /**
+ * 整型字面量类Token
+ * 整型字面量（integer literal）指的是127或2014等字符序列
  *Token类根据单词的类型，又定义了不同的子类。
  *StoneLang语言含有标识符、整型字面量和字符串字面量这三种类型的单词，每种单词都定义了对应的Token类的子类
  * @export 
@@ -101,9 +103,12 @@ export class NumToken extends Token {
 }
 
 /**
- *
- *
- * @export
+ *标识符类 Token
+ *标识符（identifier）指的是变量名、函数名或类名等名称
+ * +或-等运算符及括号等标点符号也属于标识符
+ * 标点符号与保留字有时也会被归为另一种类型的单词，不过StoneLang语言在实现时没有对它们加以区分，都作为标识符处理。
+ *保留字: 指的是那些无法用作变量名或类名的名称, 语言自有的。Typescript语言中的class或public之类的就是保留字。
+ *  @export
  * @class IdToken 标识符类
  * @extends {Token}
  */
@@ -126,8 +131,9 @@ export class IdToken extends Token {
 
 
 /**
- *
- *
+ *字符串字面量类　Token
+ *字符串字面量（string literal）是一串用于表示字符串的字符序列
+ * 双引号及其中的字符构成了一个字符串字面量，表示的是某一字符串类型的值，该值即为双引号内包含的字符序列
  * @export
  * @class StrToken 字符串字面量类
  * @extends {Token}
